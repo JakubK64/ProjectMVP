@@ -1,5 +1,9 @@
 #pragma once
 #include "Pozycja.h"
+#include <iostream>
+#include <string>
+using namespace std;
+
 class Przyjmujaca :
 	public Pozycja
 {
@@ -28,6 +32,6 @@ public:
 	~Przyjmujaca();
 
 	// Przeszukiwanie tekstu dla zmiennych dotycz¹cych konkretnej pozycji
-	string przeszukiwanie_tekstu_pozycja();
+	void przeszukiwanie_tekstu_pozycja(string kod_zawodnika,string kod_meczu);
 };
 

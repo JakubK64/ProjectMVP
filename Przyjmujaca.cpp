@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Przyjmujaca.h"
-
+#include "Pozycja.h"
 
 Przyjmujaca::Przyjmujaca()
 {
@@ -32,4 +32,236 @@ Przyjmujaca::Przyjmujaca()
 
 Przyjmujaca::~Przyjmujaca()
 {
+}
+
+void Przyjmujaca::przeszukiwanie_tekstu_pozycja(string kod_zawodnika, string kod_meczu)
+{
+	string tmp; // string pomocniczy do wyszukiwania
+	std::size_t znalezione = 0;
+
+	// Zliczanie iloœci bloków
+	tmp = kod_zawodnika;
+	tmp.append("B");
+
+	while (1)
+	{
+		znalezione = kod_meczu.find(tmp, znalezione);
+		if (znalezione == std::string::npos) break;
+
+		blok_ilosc += 1;
+		znalezione += 1;
+	}
+	znalezione = 0;
+
+	// Zliczanie iloœci bloków punktowych (pi³ka wysoka)
+	tmp = kod_zawodnika;
+	tmp.append("BH#");
+
+	while (1)
+	{
+		znalezione = kod_meczu.find(tmp, znalezione);
+		if (znalezione == std::string::npos) break;
+
+		blok_skonczone += 1;
+		znalezione += 1;
+	}
+	znalezione = 0;
+
+	// Zliczanie iloœci bloków punktowych (pi³ka typu "super")
+	tmp = kod_zawodnika;
+	tmp.append("BM#");
+
+	while (1)
+	{
+		znalezione = kod_meczu.find(tmp, znalezione);
+		if (znalezione == std::string::npos) break;
+
+		blok_skonczone += 1;
+		znalezione += 1;
+	}
+	znalezione = 0;
+
+	// Zliczanie iloœci bloków punktowych (szybka pi³ka)
+	tmp = kod_zawodnika;
+	tmp.append("BQ#");
+
+	while (1)
+	{
+		znalezione = kod_meczu.find(tmp, znalezione);
+		if (znalezione == std::string::npos) break;
+
+		blok_skonczone += 1;
+		znalezione += 1;
+	}
+	znalezione = 0;
+
+	// Zliczanie iloœci wybloków (wysoka pi³ka)
+	tmp = kod_zawodnika;
+	tmp.append("BH+");
+
+	while (1)
+	{
+		znalezione = kod_meczu.find(tmp, znalezione);
+		if (znalezione == std::string::npos) break;
+
+		blok_plus += 1;
+		znalezione += 1;
+	}
+	znalezione = 0;
+
+	// Zliczanie iloœci wybloków (pi³ka typu "super")
+	tmp = kod_zawodnika;
+	tmp.append("BM+");
+
+	while (1)
+	{
+		znalezione = kod_meczu.find(tmp, znalezione);
+		if (znalezione == std::string::npos) break;
+
+		blok_plus += 1;
+		znalezione += 1;
+	}
+	znalezione = 0;
+
+	// Zliczanie iloœci wybloków (szybka pi³ka)
+	tmp = kod_zawodnika;
+	tmp.append("BQ+");
+
+	while (1)
+	{
+		znalezione = kod_meczu.find(tmp, znalezione);
+		if (znalezione == std::string::npos) break;
+
+		blok_plus += 1;
+		znalezione += 1;
+	}
+	znalezione = 0;
+	
+	// Zliczanie bloków nieskoñczonych (wysoka pi³ka)
+	tmp = kod_zawodnika;
+	tmp.append("BH-");
+
+	while (1)
+	{
+		znalezione = kod_meczu.find(tmp, znalezione);
+		if (znalezione == std::string::npos) break;
+
+		blok_minus += 1;
+		znalezione += 1;
+	}
+	znalezione = 0;
+
+	// Zliczanie bloków nieskoñczonych (pi³ka typu "super")
+	tmp = kod_zawodnika;
+	tmp.append("BM-");
+
+	while (1)
+	{
+		znalezione = kod_meczu.find(tmp, znalezione);
+		if (znalezione == std::string::npos) break;
+
+		blok_minus += 1;
+		znalezione += 1;
+	}
+	znalezione = 0;
+
+	// Zliczanie bloków nieskoñczonych (szybka pi³ka)
+	tmp = kod_zawodnika;
+	tmp.append("BQ-");
+
+	while (1)
+	{
+		znalezione = kod_meczu.find(tmp, znalezione);
+		if (znalezione == std::string::npos) break;
+
+		blok_minus += 1;
+		znalezione += 1;
+	}
+	znalezione = 0;
+
+	// Zliczanie b³êdów w³asnych w bloku (pi³ka wysoka)
+	tmp = kod_zawodnika;
+	tmp.append("BH/");
+
+	while (1)
+	{
+		znalezione = kod_meczu.find(tmp, znalezione);
+		if (znalezione == std::string::npos) break;
+
+		blok_blad_wlasny += 1;
+		znalezione += 1;
+	}
+	znalezione = 0;
+
+	// Zliczanie b³êdów w³asnych w bloku (pi³ka typu "super")
+	tmp = kod_zawodnika;
+	tmp.append("BM/");
+
+	while (1)
+	{
+		znalezione = kod_meczu.find(tmp, znalezione);
+		if (znalezione == std::string::npos) break;
+
+		blok_blad_wlasny += 1;
+		znalezione += 1;
+	}
+	znalezione = 0;
+
+	// Zliczanie b³êdów w³asnych w bloku (szybka pi³ka)
+	tmp = kod_zawodnika;
+	tmp.append("BQ/");
+
+	while (1)
+	{
+		znalezione = kod_meczu.find(tmp, znalezione);
+		if (znalezione == std::string::npos) break;
+
+		blok_blad_wlasny += 1;
+		znalezione += 1;
+	}
+	znalezione = 0;
+
+	// Zliczanie b³êdów bloku (pi³ka wysoka)
+	tmp = kod_zawodnika;
+	tmp.append("BH=");
+
+	while (1)
+	{
+		znalezione = kod_meczu.find(tmp, znalezione);
+		if (znalezione == std::string::npos) break;
+
+		blok_blad += 1;
+		znalezione += 1;
+	}
+	znalezione = 0;
+
+	// Zliczanie b³êdów bloku (pi³ka typu "super")
+	tmp = kod_zawodnika;
+	tmp.append("BM=");
+
+	while (1)
+	{
+		znalezione = kod_meczu.find(tmp, znalezione);
+		if (znalezione == std::string::npos) break;
+
+		blok_blad += 1;
+		znalezione += 1;
+	}
+	znalezione = 0;
+
+	// Zliczanie b³êdów bloku (szybka pi³ka)
+	tmp = kod_zawodnika;
+	tmp.append("BQ/");
+
+	while (1)
+	{
+		znalezione = kod_meczu.find(tmp, znalezione);
+		if (znalezione == std::string::npos) break;
+
+		blok_blad += 1;
+		znalezione += 1;
+	}
+	znalezione = 0;
+
+	//
 }
