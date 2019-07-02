@@ -24,7 +24,7 @@ public:
 	~Atakujaca();
 
 	// Przeszukiwanie tekstu dla zmiennych dotycz¹cych konkretnej pozycji
-	string przeszukiwanie_tekstu_pozycja();
+	void przeszukiwanie_tekstu_pozycja(string kod_zawodnika, string kod_meczu);
 
 };
 

@@ -22,3 +22,54 @@ Libero::Libero()
 Libero::~Libero()
 {
 }
+
+void Libero::przeszukiwanie_tekstu_pozycja(string kod_zawodnika, string kod_meczu)
+{
+	string tmp; // string pomocniczy do wyszukiwania
+	std::size_t znalezione = 0;
+
+	// Zliczanie danych dla przyjêcia
+	tmp = kod_zawodnika;
+	tmp.append("R");
+
+	while (1)
+	{
+		znalezione = kod_meczu.find(tmp, znalezione);
+		int pozycja_w_stringu = znalezione + tmp.length() + 1;
+		char pom = kod_meczu.at(pozycja_w_stringu);
+		if (pom == '#')
+		{
+			przyjecie_perfekt += 1;
+		}
+		else if (pom == '+')
+		{
+			przyjecie_dobre += 1;
+		}
+		else if (pom == '-')
+		{
+			int pozycja_minus = znalezione + tmp.length() + 9;
+			char numer_przyjecie = kod_meczu.at(pozycja_minus);
+			int numer_do_przyjecia = (int)numer_przyjecie;
+			if (numer_do_przyjecia >= 49 && numer_do_przyjecia <= 54)
+			{
+				przyjecie_minus_numer += 1;
+			}
+			else if (numer_do_przyjecia == 59)
+			{
+				przyjecie_minus += 1;
+			}
+		}
+		else if (pom == '/')
+		{
+			przyjecie_slash += 1;
+		}
+		else if (pom == '=')
+		{
+			przyjecie_blad += 1;
+		}
+		if (znalezione == std::string::npos) break;
+
+		przyjecie_ilosc += 1;
+		znalezione += 1;
+	}
+}
